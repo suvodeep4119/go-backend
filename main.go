@@ -50,7 +50,7 @@ func main() {
 	router.POST("/albums", postAlbums)
 	router.GET("/albums/:id", getAlbumByID)
 
-	router.Run("localhost:8080")
+	router.Run(":8000")
 }
 
 func connect_to_mongodb() error {
@@ -103,7 +103,7 @@ func postAlbums(c *gin.Context) {
 		return
 	}
 	fmt.Println("Inserted a new album with ID: ", cursor.InsertedIDs[0])
-	c.IndentedJSON(http.StatusCreated, gin.H{"id": cursor.InsertedIDs[0]})	
+	c.IndentedJSON(http.StatusCreated, gin.H{"id": cursor.InsertedIDs[0]})
 }
 
 // getAlbumByID locates the album whose ID value matches the id
