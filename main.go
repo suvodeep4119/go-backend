@@ -45,12 +45,16 @@ func init() {
 }
 
 func main() {
+	port := os.Getenv("PORT")
+    if port == "" {
+	port = "5000"
+    }
 	router := gin.Default()
 	router.GET("/albums", getAlbums)
 	router.POST("/albums", postAlbums)
 	router.GET("/albums/:id", getAlbumByID)
 
-	router.Run(":8000")
+	router.Run(":"+port)
 }
 
 func connect_to_mongodb() error {
